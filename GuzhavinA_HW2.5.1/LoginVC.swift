@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginVC: UIViewController, UITextFieldDelegate{
+class LoginVC: UIViewController {
 
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -19,7 +19,7 @@ class LoginVC: UIViewController, UITextFieldDelegate{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationController = segue.destination as? WelcomeVC else { return }
+        let destinationController = segue.destination as! WelcomeVC
         let login: String = loginTextField.text!
         destinationController.login = login
     }
@@ -37,11 +37,11 @@ class LoginVC: UIViewController, UITextFieldDelegate{
     }
     @IBAction func forgotLogin(_ sender: UIButton) {
         alertPush(title: "Забыл?",
-                  message: "Вот твой Логин: Sasha. Не забывай!")
+                  message: "Вот твой Логин: Sasha Не забывай!")
     }
     @IBAction func forgotPassword(_ sender: UIButton) {
         alertPush(title: "И его забыл!?",
-                  message: "Вот твой Пароль: Pas. Сьешь Гематоген!")
+                  message: "Вот твой Пароль: Pas  Сьешь Гематоген!")
     }
     
     private func alertPush(title: String, message: String) {
@@ -49,14 +49,7 @@ class LoginVC: UIViewController, UITextFieldDelegate{
                                       message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default) { action in })
-            
         present(alert, animated: true, completion: nil)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        loginTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        return true
     }
     
     func addTapGestureToHideKeyboard() {

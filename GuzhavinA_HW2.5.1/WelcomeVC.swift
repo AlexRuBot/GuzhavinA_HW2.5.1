@@ -20,8 +20,6 @@ class WelcomeVC: UIViewController {
     }
     
     @IBAction func backToLoginVC() {
-        
         dismiss(animated: true)
     }
-
 }
