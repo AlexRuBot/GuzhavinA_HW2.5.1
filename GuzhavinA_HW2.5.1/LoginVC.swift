@@ -15,6 +15,7 @@ class LoginVC: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addTapGestureToHideKeyboard()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,13 +38,10 @@ class LoginVC: UIViewController, UITextFieldDelegate{
     @IBAction func forgotLogin(_ sender: UIButton) {
         alertPush(title: "Забыл?",
                   message: "Вот твой Логин: Sasha. Не забывай!")
-        
-        
     }
     @IBAction func forgotPassword(_ sender: UIButton) {
         alertPush(title: "И его забыл!?",
                   message: "Вот твой Пароль: Pas. Сьешь Гематоген!")
-        
     }
     
     private func alertPush(title: String, message: String) {
@@ -59,6 +57,11 @@ class LoginVC: UIViewController, UITextFieldDelegate{
         loginTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         return true
+    }
+    
+    func addTapGestureToHideKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing))
+        view.addGestureRecognizer(tapGesture)
     }
 }
 
